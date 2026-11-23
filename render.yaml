@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: forge-ai-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: AI_PROVIDER
+        value: anthropic
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-5-5
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      # Set these two in the Render dashboard when prompted (never in this file):
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      # Optional shared secret for the API:
+      - key: FORGE_API_KEY
+        sync: false
